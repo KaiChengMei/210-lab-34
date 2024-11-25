@@ -36,7 +36,6 @@ public:
 
     // Print the graph's adjacency list
     void printGraph() {
-        cout << "Graph's adjacency list:" << endl;
         for (int i = 0; i < adjList.size(); i++) {
             cout << "City " << i << " drive to ....." << endl;
             for (Pair v : adjList[i])
@@ -59,8 +58,8 @@ public:
         cout << "Inspecting City " << n << endl;
 
         for ( auto &neighbor : adjList[n]) {
-            cout << "    Possibly drive to City " << neighbor.first << " and cost {" << neighbor.second << "} minutes" << endl;
-            if (visit[neighbor.first] == false) {
+            if (!visit[neighbor.first] ) {
+                cout << "    Possibly drive to City " << neighbor.first << " and cost {" << neighbor.second << "} minutes" << endl;
                 DFSrec(visit, neighbor.first);
             }
         }
@@ -75,7 +74,7 @@ public:
 
         while (!l.empty()) {
 
-            cout << l.front() << " ";
+            cout << "Checking City " << l.front() <<endl;
             int temp = l.front();
             l.pop();
 
@@ -83,6 +82,7 @@ public:
             for ( auto &neighbor : adjList[temp]) {
                 if (visit[neighbor.first] == false) {
                     visit[neighbor.first] = true;
+                    cout << "    travel to nex City " << neighbor.first << " and use " << neighbor.second << " minutes." << endl;
                     l.push(neighbor.first);
                 }
             }
