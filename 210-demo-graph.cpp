@@ -43,6 +43,24 @@ public:
             cout << endl;
         }
     }
+
+
+    // DFS
+    void DFS(vector<Edge> &adj, int s) {
+        vector<bool> visit(adj.size(), false);
+        DFSrec(adj, visit, s)
+
+    }
+    
+    //  DFS recursive function 
+    void DFSrec(vector<Edge> &adj, vector<bool> &visit, int s) {
+        visit[s] = true;
+        cout << "DFS starting from vertex " << s << endl;
+        for (int i : adj[s])
+        if (visit[i] == false)
+            DFSrec(adj, visit, i);
+    }
+
 };
 
 int main() {
@@ -57,6 +75,8 @@ int main() {
 
     // Prints adjacency list representation of graph
     graph.printGraph();
+
+    DFS(edges,0);
 
     return 0;
 }
