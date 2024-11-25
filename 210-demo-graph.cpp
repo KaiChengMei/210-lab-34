@@ -118,6 +118,25 @@ public:
             cout << s << " -> " << i << " : " << dist[i] << endl;
         }
     }
+
+    // fastest way to get to city?
+    void mintime() {
+        // sort first
+        sort(edges.begin(), edges.end(), [](Edge a, Edge b) {
+            return a.weight < b.weight;
+        });
+
+        vector<int> parent(SIZE, -1);
+        int find(int i) {
+            if (parent[i] == -1) 
+                return i; 
+    
+            return parent[i] = find(parent[i]); 
+        } 
+
+
+    }
+
 };
 
 int main() {
