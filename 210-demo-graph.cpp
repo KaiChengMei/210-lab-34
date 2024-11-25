@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 const int SIZE = 7;
@@ -71,10 +72,20 @@ public:
         visit[s] = true;
         l.push(s);
 
-        cout << l.front();
-        l.pop();
+        while (!l.empty()) {
 
+            cout << l.front();
+            int temp = l.front();
+            l.pop();
 
+            
+            for ( auto &neighbor : adjList[temp]) {
+                if (visit[neighbor.first] == false) {
+                    visit[neighbor.first] = true;
+                    l.push(neighbor.first);
+                }
+            }
+        }
 
     }
 
