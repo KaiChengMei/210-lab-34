@@ -128,33 +128,36 @@ public:
         sort(edges.begin(), edges.end(), [](Edge a, Edge b) {return a.weight < b.weight;});
         vector<int> parent(SIZE, -1);
 
-        int find = (int x) {
-            if (parent[x] == -1) {
-                return x;
-            }
-            return parent[x] = find(parent[x]); 
-        };
-
-        void unite(int x, int y) {
-            int s1 = find(x); 
-            int s2 = find(y);
+        auto unite = [&](int x, int y) {
+            int s1 = find(parent,x); 
+            int s2 = find(parent,y);
             if (s1 != s2) {
                 parent[s1] = s2;
             }
-        }
+        };
 
-        int tempmins =0;
+        int tempmins = 0;
         for (auto &edge : edges) {
-            int a = edge[0];
-            int b = edge[1];
-            int c = edge[2];
+            int a = edge.src;
+            int b = edge.dest;
+            int c = edge.weight;
 
-            if (s.find(a) != s.find(b)) { 
-                s.unite(a, b); 
-                tempmins += weight; 
+            if (find(parent,a) != find(parent,b)) { 
+                unite(a, b); 
+                tempmins += c; 
                 cout << a << " -- " << b << " == " << c << endl; 
             } 
         }
+    }
+    
+    // seperate find cuz always show
+    // 210-demo-graph.cpp:135:32: error: use of 'find' before deduction of 'auto'
+    // 135 |             return parent[x] = find(parent[x]);
+    int find(vector<int>& parent, int x) {
+        if (parent[x] == -1) {
+            return x;
+        }
+        return parent[x] = find(parent, parent[x]);
     }
 
 };
