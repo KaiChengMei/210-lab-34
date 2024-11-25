@@ -74,7 +74,7 @@ public:
 
         while (!l.empty()) {
 
-            cout << l.front();
+            cout << l.front() << " ";
             int temp = l.front();
             l.pop();
 
@@ -106,6 +106,8 @@ int main() {
 
     cout << "DFS starting from vertex 0:" << endl;
     graph.DFS(0);
+    cout << endl;
+    cout << "BFS starting from vertex 0:" << endl;
     graph.BFS(0);
 
     return 0;
