@@ -90,6 +90,15 @@ public:
 
     }
 
+
+    // find short path
+    void shortpath(int s) {
+        priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
+        vector<int> dist(SIZE, INF);
+        pq.push(make_paiir(0,s));
+        dist[s] = 0; 
+
+    }
 };
 
 int main() {
@@ -99,7 +108,7 @@ int main() {
         // delete {2,6,2},{5,6,6},{4,5,9},{2,5,5}
         {0,1,12},{0,2,8},{0,3,21},{2,3,6},{2,4,4},
         {4,5,10},{4,6,5},{6,7,7},{6,8,12},{7,8,9},{8,9,14},{8,10,3}
-        
+
     };
 
     // Creates graph
