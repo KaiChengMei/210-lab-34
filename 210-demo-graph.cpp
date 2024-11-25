@@ -47,18 +47,20 @@ public:
 
     // DFS
     void DFS(int s) {
-        vector<bool> visit(adj.size(), false);
+        vector<bool> visit(SIZE, false);
         DFSrec(visit, s);
 
     }
     
     //  DFS recursive function 
-    void DFSrec( vector<bool> &visit, int s) {
-        visit[s] = true;
-        cout << "DFS starting from vertex " << s << endl;
-        for (int i: adj[s]) {
-            if (visit[i] == false) {
-                DFSrec(adj, visit, i);
+    void DFSrec( vector<bool> &visit, int n) {
+        cout << "DFS starting from vertex " << n << endl;
+        visit[n] = true;
+
+
+        for ( auto &neighbor : adjList[n]) {
+            if (visit[neighbor.first] == false) {
+                DFSrec(visit, neighbor.first);
             }
         }
     }
@@ -78,7 +80,7 @@ int main() {
     // Prints adjacency list representation of graph
     graph.printGraph();
 
-    graph.DFS(edges,0);
+    graph.DFS(0);
 
     return 0;
 }
