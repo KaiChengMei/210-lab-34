@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
 const int SIZE = 11;
@@ -15,11 +16,13 @@ class Graph {
 public:
     // a vector of vectors of Pairs to represent an adjacency list
     vector<vector<Pair>> adjList;
+    vector<Edge> edges;
 
     // Graph Constructor
     Graph(vector<Edge> const &edges) {
         // resize the vector to hold SIZE elements of type vector<Edge>
         adjList.resize(SIZE);
+        this->edges = edges;
 
         // add edges to the directed graph
         for (auto &edge: edges) {
@@ -122,41 +125,36 @@ public:
     // fastest way to get to city?
     void mintime() {
         // sort first
-        sort(edges.begin(), edges.end(), [](Edge a, Edge b) {
-            return a.weight < b.weight;
-        });
+        sort(edges.begin(), edges.end(), [](Edge a, Edge b) {return a.weight < b.weight;});
         vector<int> parent(SIZE, -1);
 
-        int find(int i) {
-            if (parent[i] == -1) 
-                return i; 
-    
-            return parent[i] = find(parent[i]); 
-        } 
+        int find = (int x) {
+            if (parent[x] == -1) {
+                return x;
+            }
+            return parent[x] = find(parent[x]); 
+        };
 
         void unite(int x, int y) {
             int s1 = find(x); 
             int s2 = find(y);
+            if (s1 != s2) {
+                parent[s1] = s2;
+            }
         }
 
         int tempmins =0;
-        for (auto edge : edge) {
+        for (auto &edge : edges) {
             int a = edge[0];
             int b = edge[1];
             int c = edge[2];
 
-            if (s.find(b) != s.find(c)) { 
-                s.unite(b, c); 
-                ans += tempmins; 
+            if (s.find(a) != s.find(b)) { 
+                s.unite(a, b); 
+                tempmins += weight; 
                 cout << a << " -- " << b << " == " << c << endl; 
             } 
-        
         }
-
- 
-        i
-
-
     }
 
 };
@@ -189,5 +187,10 @@ int main() {
 
     cout << "Shortest path from node 0: " << endl;
     graph.shortpath(0);
+    cout << endl;
+
+    cout << "Minimum Spanning Tree:" << endl;
+    graph.mintime();
+
     return 0;
 }
