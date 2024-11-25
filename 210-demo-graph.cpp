@@ -187,22 +187,37 @@ int main() {
         cin >> choice;
         
     switch (choice) {
-        case
-    graph.printGraph();
-
-    graph.DFS(0);
-    cout << endl;
-
-    cout << "Layer-by-Layer Network Inspection (BFS) from City 0:" << endl;
-    graph.BFS(0);
-    cout << endl;
-
-    cout << "Shortest path from node 0: " << endl;
-    graph.shortpath(0);
-    cout << endl;
-
-    cout << "Minimum Spanning Tree:" << endl;
-    graph.mintime();
+        case 1:
+            cout << "City Traffic Network:" << endl;
+            graph.printGraph();
+            break;
+        case 2:
+            cout << "Network Trace (DFS) from City 0:" << endl;
+            graph.DFS(0);
+            cout << endl;
+            break;
+        case 3:
+            cout << "Layer-by-Layer Network Inspection (BFS) from City 0:" << endl;
+            graph.BFS(0);
+            cout << endl;
+            break;
+        case 4:
+            cout << "Shortest path from node 0: " << endl;
+            graph.shortpath(0);
+            cout << endl;
+            break;
+        case 5:
+            cout << "Minimum Spanning Tree:" << endl;
+            graph.mintime();
+            cout << endl;
+            break;
+        case 0:
+            cout << "Exiting...";
+            break;
+        default:
+            cout << "Enter 0~5 " << endl;
+        }
+    } while (choice != 0) ;
 
     return 0;
 }
