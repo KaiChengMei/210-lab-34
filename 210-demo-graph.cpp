@@ -175,12 +175,21 @@ int main() {
     // Creates graph
     Graph graph(edges);
 
-    cout << "City Traffic Network:" << endl << "===========================================" << endl ;
-
-    // Prints adjacency list representation of graph
+    int choice;
+    do {
+        cout << "City traffic Menu " << endl;
+        cout << "[1] City Traffic Network" << endl;
+        cout << "[2] Network Trace (DFS) from City 0" << endl;
+        cout << "[3] Layer-by-Layer Network Inspection (BFS) from City 0" << endl;
+        cout << "[4] Shortest path from node " << endl;
+        cout << "[5] Minimum Spanning Tree:" << endl;
+        cout << "[0] Exit" << endl;
+        cin >> choice;
+        
+    switch (choice) {
+        case
     graph.printGraph();
 
-    cout << "Network Trace (DFS) from City 0:" << endl;
     graph.DFS(0);
     cout << endl;
 
