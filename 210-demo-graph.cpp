@@ -54,15 +54,28 @@ public:
     
     //  DFS recursive function 
     void DFSrec( vector<bool> &visit, int n) {
-        cout << "DFS starting from vertex " << n << endl;
         visit[n] = true;
-
+        cout << n << " ";
 
         for ( auto &neighbor : adjList[n]) {
             if (visit[neighbor.first] == false) {
                 DFSrec(visit, neighbor.first);
             }
         }
+    }
+
+    void BFS(int s) {
+        queue<int> l;
+        vector<bool> visit(SIZE, false);
+
+        visit[s] = true;
+        l.push(s);
+
+        cout << l.front();
+        l.pop();
+
+
+
     }
 
 };
@@ -80,7 +93,9 @@ int main() {
     // Prints adjacency list representation of graph
     graph.printGraph();
 
+    cout << "DFS starting from vertex 0:" << endl;
     graph.DFS(0);
+    graph.BFS(0);
 
     return 0;
 }
