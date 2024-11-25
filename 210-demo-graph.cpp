@@ -125,14 +125,36 @@ public:
         sort(edges.begin(), edges.end(), [](Edge a, Edge b) {
             return a.weight < b.weight;
         });
-
         vector<int> parent(SIZE, -1);
+
         int find(int i) {
             if (parent[i] == -1) 
                 return i; 
     
             return parent[i] = find(parent[i]); 
         } 
+
+        void unite(int x, int y) {
+            int s1 = find(x); 
+            int s2 = find(y);
+        }
+
+        int tempmins =0;
+        for (auto edge : edge) {
+            int a = edge[0];
+            int b = edge[1];
+            int c = edge[2];
+
+            if (s.find(b) != s.find(c)) { 
+                s.unite(b, c); 
+                ans += tempmins; 
+                cout << a << " -- " << b << " == " << c << endl; 
+            } 
+        
+        }
+
+
+        i
 
 
     }
