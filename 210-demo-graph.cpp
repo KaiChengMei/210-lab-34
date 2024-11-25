@@ -145,7 +145,7 @@ public:
             if (find(parent,a) != find(parent,b)) { 
                 unite(a, b); 
                 tempmins += c; 
-                cout << a << " -- " << b << " == " << c << endl; 
+                cout << "City " << a << " to City " << b << " shortest distance is " << c << " minutes" << endl; 
             } 
         }
     }
