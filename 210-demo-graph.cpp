@@ -3,7 +3,7 @@
 #include <queue>
 using namespace std;
 
-const int SIZE = 7;
+const int SIZE = 11;
 
 struct Edge {
     int src, dest, weight;
@@ -94,29 +94,28 @@ public:
     // find short path
     void shortpath(int s) {
         priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
-        vector<int> dist(SIZE, INF);
+        vector<int> dist(SIZE, INT_MAX);
         pq.push(make_pair(0,s));
         dist[s] = 0; 
 
         while (!pq.empty()) {
-            int distance = pq.top.first;
-            int currnt = pq.top.second;
+            int distance = pq.top().first;
+            int current = pq.top().second;
             pq.pop();
 
-            for (auto &neighbor : adjList[next]) {
+            for (auto &neighbor : adjList[current]) {
                 int next = neighbor.first;
-                int wei = neighbor.second;
+                int weight = neighbor.second;
 
-                if (dis[current] < dist[next]) {
+                if (dist[current] + weight  < dist[next]) {
                     dist[next] = dist[current] + weight;
-                    pq.push(make_pair(dis[next], next));
+                    pq.push(make_pair(dist[next], next));
                 }
             }
         }
 
-        cout << "Shortest path from node " << s << ":" << endl;
-        for (int i = 0; i < SIZE; i++) {
-            cout << start << " -> " << i << " : " << dist[i] << endl;
+        for (int i = 0; i < SIZE; i++) { 
+            cout << s << " -> " << i << " : " << dist[i] << endl;
         }
     }
 };
@@ -145,6 +144,7 @@ int main() {
 
     cout << "Layer-by-Layer Network Inspection (BFS) from City 0:" << endl;
     graph.BFS(0);
+    cout << endl;
 
     cout << "Shortest path from node 0: " << endl;
     graph.shortpath(0);
