@@ -38,9 +38,9 @@ public:
     void printGraph() {
         cout << "Graph's adjacency list:" << endl;
         for (int i = 0; i < adjList.size(); i++) {
-            cout << i << " --> ";
+            cout << "City " << i << " drive to ....." << endl;
             for (Pair v : adjList[i])
-                cout << "(" << v.first << ", " << v.second << ") ";
+                cout << "    City " << v.first << "is " << v.second << "minutes ";
             cout << endl;
         }
     }
@@ -108,6 +108,8 @@ int main() {
 
     // Creates graph
     Graph graph(edges);
+
+    cout << "City Traffic Network:" << endl << "===========================================" << endl ;
 
     // Prints adjacency list representation of graph
     graph.printGraph();
