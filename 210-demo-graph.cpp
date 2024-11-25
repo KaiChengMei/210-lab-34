@@ -40,7 +40,7 @@ public:
         for (int i = 0; i < adjList.size(); i++) {
             cout << "City " << i << " drive to ....." << endl;
             for (Pair v : adjList[i])
-                cout << "    City " << v.first << "is " << v.second << "minutes ";
+                cout << "    City [" << v.first << "] is {" << v.second << "} minutes " << endl;
             cout << endl;
         }
     }
@@ -56,9 +56,10 @@ public:
     //  DFS recursive function 
     void DFSrec( vector<bool> &visit, int n) {
         visit[n] = true;
-        cout << n << " ";
+        cout << "Inspecting City " << n << endl;
 
         for ( auto &neighbor : adjList[n]) {
+            cout << "    Possibly drive to City " << neighbor.first << " and cost {" << neighbor.second << "} minutes" << endl;
             if (visit[neighbor.first] == false) {
                 DFSrec(visit, neighbor.first);
             }
@@ -114,10 +115,11 @@ int main() {
     // Prints adjacency list representation of graph
     graph.printGraph();
 
-    cout << "DFS starting from vertex 0:" << endl;
+    cout << "Network Trace (DFS) from City 0:" << endl;
     graph.DFS(0);
     cout << endl;
-    cout << "BFS starting from vertex 0:" << endl;
+
+    cout << "Layer-by-Layer Network Inspection (BFS) from City 0:" << endl;
     graph.BFS(0);
 
     return 0;
